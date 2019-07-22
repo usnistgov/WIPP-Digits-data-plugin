@@ -1,0 +1,39 @@
+<!--
+This software was developed at the National Institute of Standards and
+Technology by employees of the Federal Government in the course of
+their official duties. Pursuant to title 17 Section 105 of the United
+States Code this software is not subject to copyright protection and is
+in the public domain. This software is an experimental system. NIST assumes
+no responsibility whatsoever for its use by other parties, and makes no
+guarantees, expressed or implied, about its quality, reliability, or
+any other characteristic. We would appreciate acknowledgement if the
+software is used.
+-->
+
+<!--
+Authors
+-->
+
+{# Copyright (c) 2016-2017, NVIDIA CORPORATION.  All rights reserved. #}
+
+{% from "helper.html" import print_flashes %}
+{% from "helper.html" import print_errors %}
+{% from "helper.html" import mark_errors %}
+
+<div class="form-group{{mark_errors([form.feature_folder])}}">
+    {{ form.feature_folder.label }}
+    {{ form.feature_folder.tooltip }}
+    {{ form.feature_folder(class='form-control autocomplete_path', placeholder='folder')}}
+</div>
+
+<div class="form-group{{mark_errors([form.label_folder])}}">
+    {{ form.label_folder.label }}
+    {{ form.label_folder.tooltip }}
+    {{ form.label_folder(class='form-control autocomplete_path', placeholder='folder')}}
+</div>
+
+<div class="form-group{{mark_errors([form.folder_pct_val])}}">
+    {{ form.folder_pct_val.label }}
+    {{ form.folder_pct_val.tooltip }}
+    {{ form.folder_pct_val(class='form-control autocomplete_path') }}
+</div>
