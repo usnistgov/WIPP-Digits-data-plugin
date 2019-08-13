@@ -12,6 +12,9 @@ from .forms import DatasetForm
 
 DATASET_TEMPLATE = "templates/dataset_template.html"
 
+# WIPP API URL from evironment variable
+WIPP_API_URL = os.environ.get('WIPP_API_URL') 
+
 def load_image(full_path):
     img2D = tifffile.imread(full_path)
     img3D = img2D[np.newaxis, :, :]
@@ -54,10 +57,10 @@ class DataIngestion(DataIngestionInterface):
         label_image_file = entry[1]
 
         # feature image
-        feature_image = self.load_image(feature_image_file)
+        feature_image = load_image(feature_image_file)
 
         # label image
-        label_image = self.load_image(label_image_file)
+        label_image = load_image(label_image_file)
         # if label_image.getpalette() != self.userdata[COLOR_PALETTE_ATTRIBUTE]:
         #     raise ValueError("All label images must use the same palette")
         # label_image = self.encode_PIL_Image(label_image)
@@ -106,7 +109,7 @@ class DataIngestion(DataIngestionInterface):
         """
         extension_dir = os.path.dirname(os.path.abspath(__file__))
         template = open(os.path.join(extension_dir, DATASET_TEMPLATE), "r").read()
-        context = {'form': form}
+        context = {'form': form, 'wipp_api_url': WIPP_API_URL}
         return (template, context)
 
     @staticmethod
