@@ -1,0 +1,16 @@
+{
+	"imagesCollections": {
+		"_embedded": {
+			"imagesCollections": [
+				{
+					"id": "digits-train-images",
+					"name": "digits-train-images"
+				},
+				{
+					"id": "digits-train-masks",
+					"name": "digits-train-masks"
+				}
+			]
+		}	
+	}
+}

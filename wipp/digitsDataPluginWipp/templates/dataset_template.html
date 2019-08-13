@@ -20,20 +20,44 @@ Authors
 {% from "helper.html" import print_errors %}
 {% from "helper.html" import mark_errors %}
 
-<div class="form-group{{mark_errors([form.feature_folder])}}">
-    {{ form.feature_folder.label }}
-    {{ form.feature_folder.tooltip }}
-    {{ form.feature_folder(class='form-control autocomplete_path', placeholder='folder')}}
+<div class="form-group{{mark_errors([form.feature_folder_select, form.feature_folder])}}">
+    {{ form.feature_folder_select.label }}
+    {{ form.feature_folder_select.tooltip }}
+    {{ form.feature_folder_select(class='form-control autocomplete_collections', placeholder='Type a collection name', data_path_id='feature_folder')}}
+    {{ form.feature_folder(id='feature_folder') }}
 </div>
 
-<div class="form-group{{mark_errors([form.label_folder])}}">
-    {{ form.label_folder.label }}
-    {{ form.label_folder.tooltip }}
-    {{ form.label_folder(class='form-control autocomplete_path', placeholder='folder')}}
+<div class="form-group{{mark_errors([form.label_folder_select, form.label_folder])}}">
+    {{ form.label_folder_select.label }}
+    {{ form.label_folder_select.tooltip }}
+    {{ form.label_folder_select(class='form-control autocomplete_collections', placeholder='Type a collection name', data_path_id='label_folder')}}
+    {{ form.label_folder(id='label_folder') }}
 </div>
 
 <div class="form-group{{mark_errors([form.folder_pct_val])}}">
     {{ form.folder_pct_val.label }}
     {{ form.folder_pct_val.tooltip }}
-    {{ form.folder_pct_val(class='form-control autocomplete_path') }}
+    {{ form.folder_pct_val(class='form-control') }}
 </div>
+
+<!-- WIPP API images collections search autocomplete -->
+<script type="text/javascript">
+$(function () {
+	$('.autocomplete_collections').autocomplete({
+	    serviceUrl: "{{ wipp_api_url }}" + '/imagesCollections/search/findByNameContainingIgnoreCase',
+	    paramName: 'name',
+	    dataType: 'json',
+	    transformResult: function(response) {
+		return {
+		    suggestions: $.map(response._embedded.imagesCollections, function(collection) {
+				return { value: collection.name, data: '/data/WIPP-plugins/collections/' + collection.id + "/images" };
+		    })
+		};
+	    },
+	    onSelect: function (suggestion) {
+			var dataPathId = '#' + $(this).attr('data-path_id');
+			$(dataPathId).val(suggestion.data);
+	    }
+	});
+});
+</script>
