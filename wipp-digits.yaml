@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: wipp-digits
+  name: wipp-digits
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: wipp-digits
+    spec:
+      containers:
+      - image: wipp-digits
+        name: wipp-digits
+        imagePullPolicy: Never
+        env:
+        - name: WIPP_API_URL
+          value: WIPP_API_URL_VALUE
+        volumeMounts:
+        - mountPath: /data/WIPP-plugins
+          name: data
+          readOnly: true
+        ports:
+        - containerPort: 5000
+        resources: {}
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: wippdata-pvc
+      restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: wipp-digits
+  name: wipp-digits
+spec:
+  type: NodePort
+  ports:
+  - name: "5000"
+    port: 5000
+    targetPort: 5000
+    nodePort: 30701
+  selector:
+    io.kompose.service: wipp-digits
+status:
+  loadBalancer: {}

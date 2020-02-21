@@ -39,3 +39,13 @@ Run the WIPP Digits container using this mock API:
 │                   ├── ...
 ```
 
+## Kubernetes deployment
+**Prerequesites:**
+- WIPP is deployed on the Kubernetes cluster and the WIPP Data *Permanent Volume Claim* is named `wippdata-pvc` (otherwise the name has to be changed in `wipp-digits.yaml`)
+- Replace `WIPP_API_URL_VALUE` by the URL of the WIPP API (for example `"http://IP_ADDRESS:30101/api"`) in the file `wipp-digits.yaml`.  
+
+**Deployment**
+
+Run `kubectl apply -f wipp-digits.yaml`
+
+WIPP Digits will be available at `http://HOST:30701` (where `HOST` is the IP address/host name of the host server).
