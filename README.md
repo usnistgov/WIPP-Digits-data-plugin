@@ -49,3 +49,7 @@ Run the WIPP Digits container using this mock API:
 Run `kubectl apply -f wipp-digits.yaml`
 
 WIPP Digits will be available at `http://HOST:30701` (where `HOST` is the IP address/host name of the host server).
+
+## Disclaimer
+
+[NIST Disclaimer](LICENSE.md)
