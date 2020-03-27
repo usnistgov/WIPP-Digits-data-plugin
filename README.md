@@ -57,9 +57,9 @@ Code tested succesfully with the versions 19.10 and 20.01 of Nvidia DIGITS conta
 
 **Links to WIPP**
 
-* [WIPP deployment:](https://github.com/usnistgov/WIPP)
-* [WIPP back-end:](https://github.com/usnistgov/WIPP-backend)
-* [WIPP front-end:](https://github.com/usnistgov/WIPP-frontend)
+* [WIPP deployment](https://github.com/usnistgov/WIPP)
+* [WIPP back-end](https://github.com/usnistgov/WIPP-backend)
+* [WIPP front-end](https://github.com/usnistgov/WIPP-frontend)
 
  
 ## Disclaimer
