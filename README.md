@@ -50,6 +50,18 @@ Run `kubectl apply -f wipp-digits.yaml`
 
 WIPP Digits will be available at `http://HOST:30701` (where `HOST` is the IP address/host name of the host server).
 
+
+## Notes
+ 
+Code tested succesfully with the versions 19.10 and 20.01 of Nvidia DIGITS containers. Both classification (MNIST dataset) and segmentation (VOC2012 dataset) worked with the Caffe version. Only the classification (MNIST dataset) worked with the Tensorflow version.
+
+**Links to WIPP**
+
+[WIPP deployment:](https://github.com/usnistgov/WIPP)
+[WIPP back-end:](https://github.com/usnistgov/WIPP-backend)
+[WIPP front-end:](https://github.com/usnistgov/WIPP-frontend)
+
+ 
 ## Disclaimer
 
 [NIST Disclaimer](LICENSE.md)
